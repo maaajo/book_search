@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:700|Oswald');
 
 * {
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -24,7 +25,11 @@ header > h1 {
 }
 
 #search {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	position: relative;
 }
@@ -40,6 +45,7 @@ header > h1 {
 	line-height: 1rem;
 	font-family: "Lato", sans-serif;
 	font-size: 1rem;
+	-webkit-box-shadow: 0 0 10px rgb(0, 48, 53);
 	box-shadow: 0 0 10px rgb(0, 48, 53);
 	margin-right: .5rem;
 	opacity: .9;
@@ -64,26 +70,47 @@ header > h1 {
 
 #results {
 	margin-top: 2rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 }
 
 .book-wrapper {
 	width: 50%;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	background-color: #fafafa;
 	border: 1px solid rgb(0, 48, 53);
+	-webkit-box-shadow: 0 0 10px rgb(0, 48, 53);
 	box-shadow: 0 0 10px rgb(0, 48, 53);
 	border-radius: 6px;
 	margin-bottom: 1.5rem;
+	-webkit-transition: -webkit-transform 200ms ease-in;
+	transition: -webkit-transform 200ms ease-in;
+	-o-transition: transform 200ms ease-in;
 	transition: transform 200ms ease-in;
+	transition: transform 200ms ease-in, -webkit-transform 200ms ease-in;
 }
 
 .book-details {
 	margin: 0 .3rem .3rem 1rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 }
 
@@ -124,12 +151,18 @@ header > h1 {
 }
 
 .book-thumbnail {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	margin-left: .3rem;
 }
 
 .book-wrapper:hover {
+	-webkit-transform: scale(1.03);
+	-ms-transform: scale(1.03);
 	transform: scale(1.03);
 }
 
