@@ -1,17 +1,15 @@
-
-
-this.searchButton = document.querySelector('#search-button');
-
 class Books {
-  constructor() {
+  constructor(root) {
+    this.root = root;
     this.startIndex = 0;
     this.totalItemsFoundInAPI = 0;
     this.output = ``;
+    this.searchButton = document.querySelector('#search-button');
   }
 
   runDataLoad(scrolled) {
     // create string with all words written by user joined with +
-    // then Google Books API looks for each word seaparated by + not the exact phrase
+    // then Google Books API looks for each word separated by + not the exact phrase
     const searchTerm = document
       .querySelector('#input-search')
       .value.split(' ')
@@ -53,6 +51,65 @@ class Books {
     }
   }
 
+  async performSearch() {
+    const items = await this.fetchData('done');
+    this.addBooksToPage(items);
+  }
+
+  async fetchData(search) {
+    const endpoint = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=10&startIndex=${
+      this.startIndex
+    }&orderBy=newest&fields=totalItems,items(volumeInfo/title,volumeInfo/authors,volumeInfo/industryIdentifiers,volumeInfo/imageLinks,volumeInfo/description,volumeInfo/publishedDate)`;
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    this.totalItemsFoundInAPI = data.totalItems;
+    const booksData = this.parseData(data);
+    return booksData;
+  }
+
+  parseData(data) {
+    return data.items.map(item => {
+      const thumbnail = this.getThumbnail(item);
+      const { title, publishedDate } = item.volumeInfo;
+      const isbn = this.getISBN(item);
+      const description = this.getDescription(item);
+      const author = this.getAuthor(item);
+      return {
+        thumbnail,
+        title,
+        publishedDate,
+        isbn,
+        description,
+        author,
+      };
+    });
+  }
+
+  createBooksLiteral(books) {
+    let literal = ``;
+    for (const book of books) {
+      literal += `
+      <div class="book-wrapper">
+      <div class="book-thumbnail">
+          <img src=${book.thumbnail}>
+      </div>
+      <div class="book-details">
+          <h1>${book.title}</h1>
+          <h3>by: ${book.author}</h3>
+          <p class="book-date">Published: ${book.publishedDate}</p>
+          <p class="book-isbn">ISBN: ${book.isbn}</p>
+          <p class="book-description">${book.description}</p>
+      </div>
+  </div>`;
+    }
+    return literal;
+  }
+
+  addBooksToPage(books) {
+    const tempLiteralBooks = this.createBooksLiteral(books);
+    this.root.querySelector('#results').innerHTML = tempLiteralBooks;
+  }
+
   loadData(search) {
     const endpoint = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=10&startIndex=${
       this.startIndex
@@ -88,73 +145,46 @@ class Books {
       .catch(err => console.log(err));
   }
 
-  getTitle(data) {
-    // checks whether title information exists in passed object
-    if (data['volumeInfo']['title']) {
-      return data['volumeInfo']['title'];
-    } 
-      return '';
-    
-  }
-
   getISBN(data) {
     // checks whether ISBN information exists in passed object
     // if yes then filter ISBN information to include only ISBN_13
-    if (data['volumeInfo']['industryIdentifiers'][0]['identifier']) {
-      const filteredISBN = data['volumeInfo']['industryIdentifiers'].filter(
+    if (data.volumeInfo.industryIdentifiers[0].identifier) {
+      const filteredISBN = data.volumeInfo.industryIdentifiers.filter(
         ident => ident.type.toLowerCase() === 'isbn_13'
       );
-      return filteredISBN.length !== 0 ? filteredISBN[0]['identifier'] : '';
-    } 
-      return 'missing';
-    
+      return filteredISBN.length !== 0 ? filteredISBN[0].identifier : '';
+    }
+    return 'missing';
   }
 
   getDescription(data) {
     // checks whether description information exists in passed object
     // return only first 40 words as a description
-    if (data['volumeInfo']['description']) {
-      return (
-        data['volumeInfo']['description']
-          .split(' ')
-          .slice(0, 39)
-          .join(' ') + '...'
-      );
-    } 
-      return '...';
-    
+    return (
+      `${data.volumeInfo.description
+        .split(' ')
+        .slice(0, 39)
+        .join(' ')}...` || '...'
+    );
   }
 
   getThumbnail(data) {
     // checks whether thumbnail link exists in passed object
-    if (data['volumeInfo']['imageLinks']) {
-      return data['volumeInfo']['imageLinks']['thumbnail'];
-    } 
+    try {
+      return data.volumeInfo.imageLinks.thumbnail;
+    } catch (err) {
       return 'http://placehold.it/128x198';
-    
+    }
   }
 
   getAuthor(data) {
     // checks whether author information exists in passed object
     // return each author on the same line separated by comma
-    if (data['volumeInfo']['authors']) {
-      return data['volumeInfo']['authors'].join(', ');
-    } 
-      return '';
-    
-  }
-
-  getPublishedDate(data) {
-    // checks whether publishing date exists in passed object
-    if (data['volumeInfo']['publishedDate']) {
-      return data['volumeInfo']['publishedDate'];
-    } 
-      return '';
-    
+    return data.volumeInfo.authors.join(', ') || '';
   }
 }
 
-const book = new Books();
+const book = new Books(document);
 
 // added scroll event to window
 window.addEventListener('scroll', function() {
