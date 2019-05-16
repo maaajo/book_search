@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Book searcher - Google books</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
     <header>
-        <h1>Book searcher</h1>
+      <h1>Book searcher</h1>
     </header>
     <main>
-        <section id="search">
-            <input type="text" name="book-search" id="input-search" placeholder="Type phrase to search..." autocomplete="off">
-            <button id="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </section>
-        <section id="results">
-        </section>
+      <section id="search">
+        <div id="find-book">
+          <input
+            type="text"
+            name="book-search"
+            id="input-search"
+            placeholder="Type phrase to search..."
+            autocomplete="off"
+          />
+          <button id="search-button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </section>
+      <section id="results"></section>
     </main>
     <script src="js/app.js"></script>
-</body>
+  </body>
 </html>

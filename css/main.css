@@ -1,179 +1,177 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:700|Oswald');
 
 * {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-	background: rgb(15, 86, 119); /* fallback for old browsers */
+  background: rgb(15, 86, 119); /* fallback for old browsers */
 }
 
 header {
-	margin: 3rem 0 2rem 0;
+  margin: 3rem 0 2rem 0;
 }
 
 header > h1 {
-	text-align: center;
-	letter-spacing: 3px;
-	font-size: 4rem;
-	color: #f4f4f4;
-	text-transform: uppercase;
-	font-family: "Montserrat", sans-serif;
+  text-align: center;
+  letter-spacing: 3px;
+  font-size: 4rem;
+  color: #f4f4f4;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #search {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+#find-book {
+  position: relative;
+  width: 30rem;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
 }
 
 #input-search {
-	border: none;
-	width: 23rem;
-	padding: 1rem 0;
-	border-radius: 1rem;
-	background-color: #f4f4f4;
-	outline: none;
-	text-indent: 1.5rem;
-	line-height: 1rem;
-	font-family: "Lato", sans-serif;
-	font-size: 1rem;
-	-webkit-box-shadow: 0 0 10px rgb(0, 48, 53);
-	box-shadow: 0 0 10px rgb(0, 48, 53);
-	margin-right: .5rem;
-	opacity: .9;
-	z-index: 1;
+  border: none;
+  width: 90%;
+  padding: 1rem 0;
+  outline: none;
+  text-indent: 1.5rem;
+  line-height: 1rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  background-color: #f4f4f4;
+  margin-left: 0.3rem;
+  border-radius: 10px;
 }
 
 #search-button {
-	content: '';
-	width: 60px;
-	height: 50px;
-	border-radius: 1rem;
-	background-color: rgb(182, 179, 0);
-	border: none;
-	outline: none;
-	cursor: pointer;
-}
-
-#search-button:hover {
-	background-color: rgb(0, 182, 55);
-	color: white;
+  width: 10%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 0.2rem;
+  background-color: #f4f4f4;
+  border-radius: 10px;
 }
 
 #results {
-	margin-top: 2rem;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .book-wrapper {
-	width: 50%;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	background-color: #fafafa;
-	border: 1px solid rgb(0, 48, 53);
-	-webkit-box-shadow: 0 0 10px rgb(0, 48, 53);
-	box-shadow: 0 0 10px rgb(0, 48, 53);
-	border-radius: 6px;
-	margin-bottom: 1.5rem;
-	-webkit-transition: -webkit-transform 200ms ease-in;
-	transition: -webkit-transform 200ms ease-in;
-	-o-transition: transform 200ms ease-in;
-	transition: transform 200ms ease-in;
-	transition: transform 200ms ease-in, -webkit-transform 200ms ease-in;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #fafafa;
+  border: 1px solid rgb(0, 48, 53);
+  -webkit-box-shadow: 0 0 10px rgb(0, 48, 53);
+  box-shadow: 0 0 10px rgb(0, 48, 53);
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  -webkit-transition: -webkit-transform 200ms ease-in;
+  transition: -webkit-transform 200ms ease-in;
+  -o-transition: transform 200ms ease-in;
+  transition: transform 200ms ease-in;
+  transition: transform 200ms ease-in, -webkit-transform 200ms ease-in;
 }
 
 .book-details {
-	margin: 0 .3rem .3rem 1rem;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
+  margin: 0 0.3rem 0.3rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .book-details > h1 {
-	font-family: "Oswald", sans-serif;
-	color: rgb(22, 22, 22);
-	font-size: 1.5rem;
+  font-family: 'Oswald', sans-serif;
+  color: rgb(22, 22, 22);
+  font-size: 1.5rem;
 }
 
 .book-details > h3,
 .book-details > p {
-	font-family: "Lato", sans-serif;
-	color: rgb(22, 22, 22);
+  font-family: 'Lato', sans-serif;
+  color: rgb(22, 22, 22);
 }
 
 .book-details > * {
-	margin-bottom: .4rem;
+  margin-bottom: 0.4rem;
 }
 
 .book-details > p.book-isbn,
 .book-details > p.book-date {
-	color: rgb(129, 129, 129);
-	font-size: .7rem;
+  color: rgb(129, 129, 129);
+  font-size: 0.7rem;
 }
 
 .book-details > p.book-description {
-	font-size: .9rem;
-	color: rgb(71, 71, 71);
+  font-size: 0.9rem;
+  color: rgb(71, 71, 71);
 }
 
 .book-details > p:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .book-thumbnail > img {
-	height: 150px;
-	width: 100px;
+  height: 150px;
+  width: 100px;
 }
 
 .book-thumbnail {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	margin-left: .3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 0.3rem;
 }
 
 .book-wrapper:hover {
-	-webkit-transform: scale(1.03);
-	-ms-transform: scale(1.03);
-	transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 @media screen and (max-width: 600px) {
-	.book-wrapper {
-		width: 93%;
-	}
-	#search {
-		margin: 0 .7rem;
-	}
-	header > h1 {
-		font-size: 3rem;
-	}
+  .book-wrapper {
+    width: 93%;
+  }
+  #search {
+    margin: 0 0.7rem;
+  }
+  header > h1 {
+    font-size: 3rem;
+  }
 }
