@@ -8,6 +8,13 @@
       this.searchButton = this.root.querySelector('#search-button');
     }
 
+    emptyOutput() {
+      const parent = this.root.querySelector('#results');
+      while (parent.firstChild) {
+        parent.firstChild.remove();
+      }
+    }
+
     checkIfScrollHitBottom() {
       // checks the actual scroll position
       // this is a bit of a hack to assure work on Chrome, Firefox and IE
@@ -54,9 +61,12 @@
           .querySelector('#input-search')
           .value.split(' ')
           .join('+');
-        this.searchTerm
-          ? await this.runNewSearch(this.searchTerm)
-          : alert('Please type searched phrase!');
+        if (this.searchTerm) {
+          await this.runNewSearch(this.searchTerm);
+        } else {
+          this.emptyOutput();
+          alert('Please type searched phrase!');
+        }
       }
     }
 
@@ -121,7 +131,9 @@
         const filteredISBN = data.volumeInfo.industryIdentifiers.filter(
           ident => ident.type.toLowerCase() === 'isbn_13'
         );
-        return filteredISBN.length !== 0 ? filteredISBN[0].identifier : '';
+        return filteredISBN.length !== 0
+          ? filteredISBN[0].identifier
+          : 'missing';
       } catch (err) {
         return 'missing';
       }
